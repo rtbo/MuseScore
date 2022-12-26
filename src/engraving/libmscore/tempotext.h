@@ -93,7 +93,7 @@ protected:
     bool _followText;         // parse text to determine tempo
     double _relative;
     bool _isRelative;
-    bool _restorePrevious;      // reset to previous tempo after gradual change ("a Tempo")
+    bool _restorePrevious;      // reset to previous tempo after gradual change ("a tempo")
 };
 } // namespace mu::engraving
 #endif

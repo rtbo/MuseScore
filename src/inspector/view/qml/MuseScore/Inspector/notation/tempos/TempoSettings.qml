@@ -68,7 +68,7 @@ Column {
             font: restorePreviousTempoCheckbox.font
             delay: 700
             timeout: 5000
-            text: qsTrc("inspector", "Automatically restore the previously set tempo (e.g. for <i>a Tempo</i>)")
+            text: qsTrc("inspector", "Automatically restore the previously set tempo (e.g. for <i>a tempo</i>)")
         }
     }
 
