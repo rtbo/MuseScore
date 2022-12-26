@@ -20,6 +20,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import QtQuick 2.15
+import QtQuick.Controls 2.15
 
 import MuseScore.Ui 1.0
 import MuseScore.UiComponents 1.0
@@ -61,6 +62,14 @@ Column {
         navigation.name: "RestorePreviousCheckBox"
         navigation.panel: root.navigationPanel
         navigation.row: followWrittenTempoCheckbox.navigation.row + 1
+
+        ToolTip {
+            visible: restorePreviousTempoCheckbox.hovered
+            font: restorePreviousTempoCheckbox.font
+            delay: 700
+            timeout: 5000
+            text: qsTrc("inspector", "Automatically restore the previously set tempo (e.g. for <i>a Tempo</i>)")
+        }
     }
 
     SpinBoxPropertyView {
