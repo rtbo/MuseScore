@@ -235,7 +235,7 @@ class EngravingItem : public mu::plugins::api::ScoreElement
     API_PROPERTY(space,                   SPACE)
     API_PROPERTY(tempo,                   TEMPO)
     API_PROPERTY(tempoFollowText,         TEMPO_FOLLOW_TEXT)
-    API_PROPERTY(tempoResetPrevious,      TEMPO_RESET_PREVIOUS)
+    API_PROPERTY(tempoRestorePrevious,    TEMPO_RESTORE_PREVIOUS)
     API_PROPERTY(accidentalBracket,       ACCIDENTAL_BRACKET)
     API_PROPERTY(numeratorString,         NUMERATOR_STRING)
     API_PROPERTY(denominatorString,       DENOMINATOR_STRING)

@@ -45,7 +45,7 @@ void TempoSettingsModel::createProperties()
         emit requestReloadPropertyItems();
     });
 
-    m_isResetPreviousTempo = buildPropertyItem(mu::engraving::Pid::TEMPO_RESET_PREVIOUS);
+    m_isRestorePreviousTempo = buildPropertyItem(mu::engraving::Pid::TEMPO_RESTORE_PREVIOUS);
 
     m_tempo = buildPropertyItem(mu::engraving::Pid::TEMPO);
 }
@@ -58,14 +58,14 @@ void TempoSettingsModel::requestElements()
 void TempoSettingsModel::loadProperties()
 {
     loadPropertyItem(m_isDefaultTempoForced);
-    loadPropertyItem(m_isResetPreviousTempo);
+    loadPropertyItem(m_isRestorePreviousTempo);
     loadPropertyItem(m_tempo, formatDoubleFunc);
 }
 
 void TempoSettingsModel::resetProperties()
 {
     m_isDefaultTempoForced->resetToDefault();
-    m_isResetPreviousTempo->resetToDefault();
+    m_isRestorePreviousTempo->resetToDefault();
     m_tempo->resetToDefault();
 }
 
@@ -74,9 +74,9 @@ PropertyItem* TempoSettingsModel::isDefaultTempoForced() const
     return m_isDefaultTempoForced;
 }
 
-PropertyItem* TempoSettingsModel::isResetPreviousTempo() const
+PropertyItem* TempoSettingsModel::isRestorePreviousTempo() const
 {
-    return m_isResetPreviousTempo;
+    return m_isRestorePreviousTempo;
 }
 
 PropertyItem* TempoSettingsModel::tempo() const

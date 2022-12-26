@@ -705,7 +705,7 @@ void Score::rebuildTempoAndTimeSigMaps(Measure* measure)
                         tt->updateRelative();
                     }
                     int ticks = tt->segment()->tick().ticks();
-                    BeatsPerSecond tempo = tt->isResetPrevious()
+                    BeatsPerSecond tempo = tt->isRestorePrevious()
                                            ? tempomap()->tempo(ticks)
                                            : tt->tempo();
                     tempomap()->setTempo(ticks, tempo);

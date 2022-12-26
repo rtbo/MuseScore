@@ -54,11 +54,11 @@ Column {
     }
 
     CheckBoxPropertyView {
-        id: resetPreviousTempoCheckbox
-        text: qsTrc("inspector", "Reset previous tempo")
-        propertyItem: root.model ? root.model.isResetPreviousTempo : null
+        id: restorePreviousTempoCheckbox
+        text: qsTrc("inspector", "Restore previous tempo")
+        propertyItem: root.model ? root.model.isRestorePreviousTempo : null
 
-        navigation.name: "ResetPreviousCheckBox"
+        navigation.name: "RestorePreviousCheckBox"
         navigation.panel: root.navigationPanel
         navigation.row: followWrittenTempoCheckbox.navigation.row + 1
     }
@@ -69,13 +69,13 @@ Column {
         enabled: !root.model ? false : (
             !root.model.isEmpty
             && !followWrittenTempoCheckbox.checked
-            && !resetPreviousTempoCheckbox.checked
+            && !restorePreviousTempoCheckbox.checked
         )
 
         measureUnitsSymbol: qsTrc("inspector", "BPM")
 
         navigationName: "Override"
         navigationPanel: root.navigationPanel
-        navigationRowStart: resetPreviousTempoCheckbox.navigation.row + 1
+        navigationRowStart: restorePreviousTempoCheckbox.navigation.row + 1
     }
 }

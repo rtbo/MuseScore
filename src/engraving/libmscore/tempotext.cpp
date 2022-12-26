@@ -62,11 +62,11 @@ TempoText::TempoText(Segment* parent)
     : TextBase(ElementType::TEMPO_TEXT, parent, TextStyleType::TEMPO, ElementFlag::SYSTEM | ElementFlag::ON_STAFF)
 {
     initElementStyle(&tempoStyle);
-    _tempo         = 2.0;        // propertyDefault(P_TEMPO).toDouble();
-    _followText    = false;
-    _relative      = 1.0;
-    _isRelative    = false;
-    _resetPrevious = false;
+    _tempo           = 2.0;        // propertyDefault(P_TEMPO).toDouble();
+    _followText      = false;
+    _relative        = 1.0;
+    _isRelative      = false;
+    _restorePrevious = false;
 }
 
 //---------------------------------------------------------
@@ -80,8 +80,8 @@ void TempoText::write(XmlWriter& xml) const
     if (_followText) {
         xml.tag("followText", _followText);
     }
-    if (_resetPrevious) {
-        xml.tag("resetPrevious", _resetPrevious);
+    if (_restorePrevious) {
+        xml.tag("restorePrevious", _restorePrevious);
     }
     TextBase::writeProperties(xml);
     xml.endElement();
@@ -359,12 +359,12 @@ void TempoText::undoSetFollowText(bool v)
 }
 
 //---------------------------------------------------------
-//   undoResetPrevious
+//   undoRestorePrevious
 //---------------------------------------------------------
 
-void TempoText::undoResetPrevious(bool v)
+void TempoText::undoRestorePrevious(bool v)
 {
-    undoChangeProperty(Pid::TEMPO_RESET_PREVIOUS, v, propertyFlags(Pid::TEMPO));
+    undoChangeProperty(Pid::TEMPO_RESTORE_PREVIOUS, v, propertyFlags(Pid::TEMPO));
 }
 
 //---------------------------------------------------------
@@ -378,8 +378,8 @@ PropertyValue TempoText::getProperty(Pid propertyId) const
         return _tempo;
     case Pid::TEMPO_FOLLOW_TEXT:
         return _followText;
-    case Pid::TEMPO_RESET_PREVIOUS:
-        return _resetPrevious;
+    case Pid::TEMPO_RESTORE_PREVIOUS:
+        return _restorePrevious;
     default:
         return TextBase::getProperty(propertyId);
     }
@@ -399,8 +399,8 @@ bool TempoText::setProperty(Pid propertyId, const PropertyValue& v)
     case Pid::TEMPO_FOLLOW_TEXT:
         _followText = v.toBool();
         break;
-    case Pid::TEMPO_RESET_PREVIOUS:
-        _resetPrevious = v.toBool();
+    case Pid::TEMPO_RESTORE_PREVIOUS:
+        _restorePrevious = v.toBool();
         score()->setUpTempoMapLater();
         break;
     default:
@@ -426,7 +426,7 @@ PropertyValue TempoText::propertyDefault(Pid id) const
         return BeatsPerSecond(2.0);
     case Pid::TEMPO_FOLLOW_TEXT:
         return false;
-    case Pid::TEMPO_RESET_PREVIOUS:
+    case Pid::TEMPO_RESTORE_PREVIOUS:
         return false;
     default:
         return TextBase::propertyDefault(id);
