@@ -59,6 +59,11 @@ public:
     bool followText() const { return _followText; }
     void setFollowText(bool v) { _followText = v; }
     void undoSetFollowText(bool v);
+
+    bool isResetPrevious() const { return _resetPrevious; }
+    void setResetPrevious(bool v) { _resetPrevious = v; }
+    void undoResetPrevious(bool v);
+
     void updateRelative();
 
     void layout() override;
@@ -88,6 +93,7 @@ protected:
     bool _followText;         // parse text to determine tempo
     double _relative;
     bool _isRelative;
+    bool _resetPrevious;      // reset to previous tempo after gradual change ("a Tempo")
 };
 } // namespace mu::engraving
 #endif

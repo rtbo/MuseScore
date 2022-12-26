@@ -149,6 +149,7 @@ static constexpr PropertyMetaData propertyList[] = {
     { Pid::SPACE,                   false, "space",                 P_TYPE::MILLIMETRE,     DUMMY_QT_TR_NOOP("propertyName", "space") },
     { Pid::TEMPO,                   true,  "tempo",                 P_TYPE::TEMPO,          DUMMY_QT_TR_NOOP("propertyName", "tempo") },
     { Pid::TEMPO_FOLLOW_TEXT,       true,  "followText",            P_TYPE::BOOL,           DUMMY_QT_TR_NOOP("propertyName", "following text") },
+    { Pid::TEMPO_RESET_PREVIOUS,    true,  "resetPrevious",         P_TYPE::BOOL,           DUMMY_QT_TR_NOOP("propertyName", "resetting previous") },
     { Pid::ACCIDENTAL_BRACKET,      false, "bracket",               P_TYPE::INT,            DUMMY_QT_TR_NOOP("propertyName", "bracket") },
     { Pid::ACCIDENTAL_TYPE,         true,  "subtype",               P_TYPE::INT,            DUMMY_QT_TR_NOOP("propertyName", "type") },
     { Pid::NUMERATOR_STRING,        false, "textN",                 P_TYPE::STRING,         DUMMY_QT_TR_NOOP("propertyName", "numerator string") },
@@ -411,8 +412,9 @@ Pid propertyId(const AsciiStringView& s)
 
 P_TYPE propertyType(Pid id)
 {
-    assert(propertyList[int(id)].id == id);
-    return propertyList[int(id)].type;
+    const auto pid = propertyList[int(id)];
+    assert(pid.id == id);
+    return pid.type;
 }
 
 //---------------------------------------------------------

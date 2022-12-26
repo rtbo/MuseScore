@@ -1472,6 +1472,7 @@ PalettePtr PaletteCreator::newTempoPalette(bool defaultPalette)
     aTempoTxt->setFollowText(false);
     aTempoTxt->setXmlText("a Tempo");
     aTempoTxt->setTempo(120.0 / 60.0);
+    aTempoTxt->setResetPrevious(true);
     sp->appendElement(aTempoTxt, "a Tempo", 1.3);
 
     auto stxt = makeElement<SystemText>(gpaletteScore);
