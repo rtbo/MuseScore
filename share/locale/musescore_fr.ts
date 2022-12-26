@@ -18798,17 +18798,27 @@ l&apos;anacrouse</translation>
         <translation>Générer les armures</translation>
     </message>
     <message>
-        <location filename="../../src/inspector/view/qml/MuseScore/Inspector/notation/tempos/TempoSettings.qml" line="48"/>
+        <location filename="../../src/inspector/view/qml/MuseScore/Inspector/notation/tempos/TempoSettings.qml" line="49"/>
         <source>Follow written tempo</source>
         <translation>Suivre le tempo écrit</translation>
     </message>
     <message>
-        <location filename="../../src/inspector/view/qml/MuseScore/Inspector/notation/tempos/TempoSettings.qml" line="57"/>
+        <location filename="../../src/inspector/view/qml/MuseScore/Inspector/notation/tempos/TempoSettings.qml" line="59"/>
+        <source>Restore previous tempo</source>
+        <translation>Rétablir le tempo précédent</translation>
+    </message>
+    <message>
+        <location filename="../../src/inspector/view/qml/MuseScore/Inspector/notation/tempos/TempoSettings.qml" line="71"/>
+        <source>Automatically restore the previously set tempo (e.g. for &lt;b&gt;&lt;i&gt;a tempo&lt;/i&gt;&lt;/b&gt;)</source>
+        <translation>Rétablit automatiquement le tempo précédent (p. ex. pour &lt;b&gt;&lt;i&gt;a tempo&lt;/i&gt;&lt;/b&gt;)</translation>
+    </message>
+    <message>
+        <location filename="../../src/inspector/view/qml/MuseScore/Inspector/notation/tempos/TempoSettings.qml" line="76"/>
         <source>Override written tempo</source>
         <translation>Écraser le tempo écrit</translation>
     </message>
     <message>
-        <location filename="../../src/inspector/view/qml/MuseScore/Inspector/notation/tempos/TempoSettings.qml" line="61"/>
+        <location filename="../../src/inspector/view/qml/MuseScore/Inspector/notation/tempos/TempoSettings.qml" line="84"/>
         <source>BPM</source>
         <translation>BPM</translation>
     </message>
