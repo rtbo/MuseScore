@@ -278,6 +278,13 @@ void TempoText::updateTempo()
     static std::unordered_map<String, std::regex> regexps;
     static std::unordered_map<String, std::regex> regexps2;
     String s = plainText();
+    if (s.toLower() == "a tempo") {
+        _relative = 1.0;
+        _isRelative = false;
+        setRestorePrevious(true);
+        updateScore();
+        return;
+    }
     s.replace(u",", u".");
     s.replace(u"<sym>space</sym>", u" ");
     std::string su8 = s.toStdString();
