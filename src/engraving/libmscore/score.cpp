@@ -706,8 +706,8 @@ void Score::rebuildTempoAndTimeSigMaps(Measure* measure)
                     }
                     int ticks = tt->segment()->tick().ticks();
                     BeatsPerSecond tempo = tt->isResetPrevious()
-                        ? tempomap()->tempo(ticks)
-                        : tt->tempo();
+                                           ? tempomap()->tempo(ticks)
+                                           : tt->tempo();
                     tempomap()->setTempo(ticks, tempo);
                 }
             }
