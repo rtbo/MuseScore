@@ -36,7 +36,7 @@ Column {
     property NavigationPanel navigationPanel: null
     property int navigationRowStart: 1
 
-    objectName: "TempoSettings"
+    objectName: "RestorePreviousTempoSettings"
 
     spacing: 12
 

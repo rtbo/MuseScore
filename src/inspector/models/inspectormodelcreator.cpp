@@ -29,6 +29,7 @@
 #include "notation/notes/stems/stemsettingsmodel.h"
 #include "notation/fermatas/fermatasettingsmodel.h"
 #include "notation/tempos/temposettingsmodel.h"
+#include "notation/tempos/restoreprevioustemposettingsmodel.h"
 #include "notation/lines/glissandosettingsmodel.h"
 #include "notation/barlines/barlinesettingsproxymodel.h"
 #include "notation/staffs/staffsettingsmodel.h"
@@ -92,8 +93,10 @@ AbstractInspectorModel* InspectorModelCreator::newInspectorModel(InspectorModelT
         return new BeamSettingsModel(parent, repository);
     case InspectorModelType::TYPE_FERMATA:
         return new FermataSettingsModel(parent, repository);
-    case InspectorModelType::TYPE_TEMPO:
+    case InspectorModelType::TYPE_SET_TEMPO:
         return new TempoSettingsModel(parent, repository);
+    case InspectorModelType::TYPE_RESTORE_PREVIOUS_TEMPO:
+        return new RestorePreviousTempoSettingsModel(parent, repository);
     case InspectorModelType::TYPE_GLISSANDO:
         return new GlissandoSettingsModel(parent, repository);
     case InspectorModelType::TYPE_BARLINE:

@@ -19,13 +19,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-#ifndef MU_INSPECTOR_TEMPOSETTINGSMODEL_H
-#define MU_INSPECTOR_TEMPOSETTINGSMODEL_H
+#ifndef MU_INSPECTOR_RESTOREPREVIOUSTEMPOSETTINGSMODEL_H
+#define MU_INSPECTOR_RESTOREPREVIOUSTEMPOSETTINGSMODEL_H
 
 #include "models/abstractinspectormodel.h"
 
 namespace mu::inspector {
-class TempoSettingsModel : public AbstractInspectorModel
+class RestorePreviousTempoSettingsModel : public AbstractInspectorModel
 {
     Q_OBJECT
 
@@ -33,7 +33,7 @@ class TempoSettingsModel : public AbstractInspectorModel
     Q_PROPERTY(PropertyItem * tempo READ tempo CONSTANT)
 
 public:
-    explicit TempoSettingsModel(QObject* parent, IElementRepositoryService* repository);
+    explicit RestorePreviousTempoSettingsModel(QObject* parent, IElementRepositoryService* repository);
 
     void createProperties() override;
     void requestElements() override;
@@ -47,6 +47,7 @@ private:
     PropertyItem* m_isDefaultTempoForced = nullptr;
     PropertyItem* m_tempo = nullptr;
 };
+
 }
 
-#endif // MU_INSPECTOR_TEMPOSETTINGSMODEL_H
+#endif // MU_INSPECTOR_RESTOREPREVIOUSTEMPOSETTINGSMODEL_H

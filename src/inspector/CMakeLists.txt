@@ -168,6 +168,8 @@ set(MODULE_SRC
     ${CMAKE_CURRENT_LIST_DIR}/models/notation/staffs/staffsettingsmodel.h
     ${CMAKE_CURRENT_LIST_DIR}/models/notation/stafftype/stafftypesettingsmodel.cpp
     ${CMAKE_CURRENT_LIST_DIR}/models/notation/stafftype/stafftypesettingsmodel.h
+    ${CMAKE_CURRENT_LIST_DIR}/models/notation/tempos/restoreprevioustemposettingsmodel.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/models/notation/tempos/restoreprevioustemposettingsmodel.h
     ${CMAKE_CURRENT_LIST_DIR}/models/notation/tempos/temposettingsmodel.cpp
     ${CMAKE_CURRENT_LIST_DIR}/models/notation/tempos/temposettingsmodel.h
     ${CMAKE_CURRENT_LIST_DIR}/models/notation/timesignatures/timesignaturesettingsmodel.cpp

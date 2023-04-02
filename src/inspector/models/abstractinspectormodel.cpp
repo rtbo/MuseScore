@@ -21,6 +21,8 @@
  */
 #include "abstractinspectormodel.h"
 
+#include "libmscore/tempotext.h"
+
 #include "types/texttypes.h"
 
 #include "log.h"
@@ -46,7 +48,6 @@ static const QMap<mu::engraving::ElementType, InspectorModelType> NOTATION_ELEME
     { mu::engraving::ElementType::SLUR_SEGMENT, InspectorModelType::TYPE_SLUR },
     { mu::engraving::ElementType::TIE, InspectorModelType::TYPE_TIE },
     { mu::engraving::ElementType::TIE_SEGMENT, InspectorModelType::TYPE_TIE },
-    { mu::engraving::ElementType::TEMPO_TEXT, InspectorModelType::TYPE_TEMPO },
     { mu::engraving::ElementType::FERMATA, InspectorModelType::TYPE_FERMATA },
     { mu::engraving::ElementType::LAYOUT_BREAK, InspectorModelType::TYPE_SECTIONBREAK },
     { mu::engraving::ElementType::BAR_LINE, InspectorModelType::TYPE_BARLINE },
@@ -103,6 +104,11 @@ static QMap<mu::engraving::HairpinType, InspectorModelType> HAIRPIN_ELEMENT_MODE
 
 static QMap<mu::engraving::LayoutBreakType, InspectorModelType> LAYOUT_BREAK_ELEMENT_MODEL_TYPES = {
     { mu::engraving::LayoutBreakType::SECTION, InspectorModelType::TYPE_SECTIONBREAK }
+};
+
+static QMap<mu::engraving::TempoTextType, InspectorModelType> TEMPO_TEXT_ELEMENT_MODEL_TYPES = {
+    { mu::engraving::TempoTextType::SET, InspectorModelType::TYPE_SET_TEMPO },
+    { mu::engraving::TempoTextType::RESTORE_PREVIOUS, InspectorModelType::TYPE_RESTORE_PREVIOUS_TEMPO },
 };
 
 AbstractInspectorModel::AbstractInspectorModel(QObject* parent, IElementRepositoryService* repository,
@@ -191,6 +197,11 @@ InspectorModelType AbstractInspectorModel::modelTypeByElementKey(const ElementKe
     if (elementKey.type == mu::engraving::ElementType::LAYOUT_BREAK) {
         return LAYOUT_BREAK_ELEMENT_MODEL_TYPES.value(static_cast<mu::engraving::LayoutBreakType>(elementKey.subtype),
                                                       InspectorModelType::TYPE_UNDEFINED);
+    }
+
+    if (elementKey.type == mu::engraving::ElementType::TEMPO_TEXT) {
+        return TEMPO_TEXT_ELEMENT_MODEL_TYPES.value(static_cast<mu::engraving::TempoTextType>(elementKey.subtype),
+                                                InspectorModelType::TYPE_UNDEFINED);
     }
 
     if (elementKey.type == mu::engraving::ElementType::ARTICULATION) {

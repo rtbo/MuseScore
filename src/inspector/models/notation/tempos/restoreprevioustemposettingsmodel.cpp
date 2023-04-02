@@ -19,7 +19,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-#include "temposettingsmodel.h"
+#include "restoreprevioustemposettingsmodel.h"
 
 #include "dataformatter.h"
 
@@ -27,16 +27,16 @@
 
 using namespace mu::inspector;
 
-TempoSettingsModel::TempoSettingsModel(QObject* parent, IElementRepositoryService* repository)
+RestorePreviousTempoSettingsModel::RestorePreviousTempoSettingsModel(QObject* parent, IElementRepositoryService* repository)
     : AbstractInspectorModel(parent, repository)
 {
-    setModelType(InspectorModelType::TYPE_SET_TEMPO);
-    setTitle(qtrc("inspector", "Tempo"));
+    setModelType(InspectorModelType::TYPE_RESTORE_PREVIOUS_TEMPO);
+    setTitle(qtrc("inspector", "Restore previous tempo (a tempo)"));
     setIcon(ui::IconCode::Code::METRONOME);
     createProperties();
 }
 
-void TempoSettingsModel::createProperties()
+void RestorePreviousTempoSettingsModel::createProperties()
 {
     m_isDefaultTempoForced
         = buildPropertyItem(mu::engraving::Pid::TEMPO_FOLLOW_TEXT, [this](const mu::engraving::Pid pid, const QVariant& newValue) {
@@ -48,29 +48,29 @@ void TempoSettingsModel::createProperties()
     m_tempo = buildPropertyItem(mu::engraving::Pid::TEMPO);
 }
 
-void TempoSettingsModel::requestElements()
+void RestorePreviousTempoSettingsModel::requestElements()
 {
     m_elementList = m_repository->findElementsByType(mu::engraving::ElementType::TEMPO_TEXT);
 }
 
-void TempoSettingsModel::loadProperties()
+void RestorePreviousTempoSettingsModel::loadProperties()
 {
     loadPropertyItem(m_isDefaultTempoForced);
     loadPropertyItem(m_tempo, formatDoubleFunc);
 }
 
-void TempoSettingsModel::resetProperties()
+void RestorePreviousTempoSettingsModel::resetProperties()
 {
     m_isDefaultTempoForced->resetToDefault();
     m_tempo->resetToDefault();
 }
 
-PropertyItem* TempoSettingsModel::isDefaultTempoForced() const
+PropertyItem* RestorePreviousTempoSettingsModel::isDefaultTempoForced() const
 {
     return m_isDefaultTempoForced;
 }
 
-PropertyItem* TempoSettingsModel::tempo() const
+PropertyItem* RestorePreviousTempoSettingsModel::tempo() const
 {
     return m_tempo;
 }

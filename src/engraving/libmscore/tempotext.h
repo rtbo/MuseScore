@@ -27,6 +27,12 @@
 #include "textbase.h"
 
 namespace mu::engraving {
+
+enum class TempoTextType : signed char {
+    SET,
+    RESTORE_PREVIOUS,
+};
+
 //-------------------------------------------------------------------
 //   @@ TempoText
 ///    Tempo marker which determines the midi tempo.
@@ -43,11 +49,16 @@ public:
 
     TempoText* clone() const override { return new TempoText(*this); }
 
+    int subtype() const override;
+
     void write(XmlWriter& xml) const override;
     void read(XmlReader&) override;
 
     Segment* segment() const { return toSegment(explicitParent()); }
     Measure* measure() const { return toMeasure(explicitParent()->explicitParent()); }
+
+    TempoTextType tempoTextType() const { return _tempoTextType; }
+    void setTempoTextType(TempoTextType tempoTextType) { _tempoTextType = tempoTextType; }
 
     BeatsPerSecond tempo() const { return _tempo; }
     double tempoBpm() const;
@@ -60,9 +71,7 @@ public:
     void setFollowText(bool v) { _followText = v; }
     void undoSetFollowText(bool v);
 
-    bool isRestorePrevious() const { return _restorePrevious; }
-    void setRestorePrevious(bool v) { _restorePrevious = v; }
-    void undoRestorePrevious(bool v);
+    bool isRestorePrevious() const { return _tempoTextType == TempoTextType::RESTORE_PREVIOUS; }
 
     void updateRelative();
 
@@ -89,11 +98,11 @@ protected:
     void updateScore();
     void updateTempo();
 
+    TempoTextType _tempoTextType;
     BeatsPerSecond _tempo;             // beats per second
     bool _followText;         // parse text to determine tempo
     double _relative;
     bool _isRelative;
-    bool _restorePrevious;      // reset to previous tempo after gradual change ("a tempo")
 };
 } // namespace mu::engraving
 #endif

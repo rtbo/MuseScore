@@ -110,12 +110,20 @@ void TRead::read(TempoText* t, XmlReader& e, ReadContext& ctx)
 {
     while (e.readNextStartElement()) {
         const AsciiStringView tag(e.name());
-        if (tag == "tempo") {
+        if (tag == "type") {
+            const AsciiStringView typ(e.readAsciiText());
+            if (typ == "set") {
+                t->setTempoTextType(TempoTextType::SET);
+            } else if (typ == "restorePrevious") {
+                t->setTempoTextType(TempoTextType::RESTORE_PREVIOUS);
+            }
+            else {
+                e.unknown();
+            }
+        } else if (tag == "tempo") {
             t->setTempo(TConv::fromXml(e.readAsciiText(), Constants::defaultTempo));
         } else if (tag == "followText") {
             t->setFollowText(e.readInt());
-        } else if (tag == "restorePrevious") {
-            t->setRestorePrevious(e.readInt());
         } else if (!TextBaseRW::readProperties(t, e, ctx)) {
             e.unknown();
         }
